@@ -19,3 +19,6 @@ class TestSalariedEmployee(unittest.TestCase):
     def test_process_pay(self):
         pay_amt = self.salaried_employee.process_pay()
         self.assertEqual(50000 / 52, pay_amt)
+
+if __name__ == "__main__":
+    unittest.main()

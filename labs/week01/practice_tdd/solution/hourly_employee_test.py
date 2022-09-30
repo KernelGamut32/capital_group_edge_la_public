@@ -19,3 +19,6 @@ class TestHourlyEmployee(unittest.TestCase):
     def test_process_pay(self):
         pay_amt = self.hourly_employee.process_pay()
         self.assertEqual(600, pay_amt)
+
+if __name__ == "__main__":
+    unittest.main()
