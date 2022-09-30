@@ -15,3 +15,6 @@ class TestEmployee(unittest.TestCase):
         self.assertEqual(
             f'Employee Number: {self.employee.emp_num}\nName: {self.employee.l_name}, {self.employee.f_name}\nDepartment: {self.employee.dept}',
             badge_text)
+
+if __name__ == "__main__":
+    unittest.main()
