@@ -23,3 +23,6 @@ class TestController(unittest.TestCase):
         self.assertEqual(
             2468.1, self.controller.get_discounted_price(200, 12.99))
 
+
+if __name__ == "__main__":
+    unittest.main()
