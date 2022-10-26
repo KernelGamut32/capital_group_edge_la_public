@@ -30,3 +30,17 @@ class TestProductRepository(unittest.TestCase):
         self.assertTrue(self.inserted_product in products)
         self.assertTrue(inserted_product2 in products)
         self.productRepository.delete(inserted_product2.id)
+
+    def test_edit_existing(self):
+        current = self.productRepository.get_by_id(self.inserted_product.id)
+        current.description = 'modified description'
+        update = self.productRepository.update(current)
+        self.assertEqual(update.id, self.inserted_product.id)
+        self.assertEqual(update.product_number, self.inserted_product.product_number)
+        self.assertEqual(update.description, 'modified description')
+        self.assertEqual(update.unit_cost, self.inserted_product.unit_cost)
+
+        
+
+if __name__ == "__main__":
+    unittest.main()

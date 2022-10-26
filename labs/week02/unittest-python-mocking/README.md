@@ -33,7 +33,6 @@ Add additional operations to your API:
 
 * Add a new product to the catalog
 * Edit an existing product
-* Delete a product
 
 As with the previous, use TDD and `unittest` to build a corresponding set of automated tests to accompany the production code. Practice Red/Green/Refactor as you move through the coding of this new set of operations. Ensure you use `unittest.mock` with the new operations to maintain isolation.
 

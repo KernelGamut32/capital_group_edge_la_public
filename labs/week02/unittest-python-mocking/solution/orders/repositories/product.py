@@ -40,6 +40,12 @@ class ProductRepository():
         product.id = cursor.lastrowid
         return product
 
+    def update(self, product: Product):
+        with sqlite3.connect(self.db_name) as db:
+            db.execute('UPDATE PRODUCT SET PRODUCT_NUMBER=?, DESCRIPTION=?, UNIT_COST=? WHERE ID=?', 
+                [product.product_number, product.description, product.unit_cost, product.id])
+        return self.get_by_id(product.id)
+
     def delete(self, id):
         with sqlite3.connect(self.db_name) as db:
             db.execute('DELETE FROM PRODUCT WHERE ID=?;', [id])

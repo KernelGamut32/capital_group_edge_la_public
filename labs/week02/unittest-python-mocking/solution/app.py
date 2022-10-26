@@ -11,8 +11,8 @@ from typing import List
 
 app = FastAPI()
 product_repository = ProductRepository()
-order_repository = OrderRepository(product_repository)
-order_service = OrderService(order_repository)
+order_repository = OrderRepository()
+order_service = OrderService(order_repository, product_repository)
 product_service = ProductService(product_repository)
 _ = Database()
 
@@ -30,10 +30,17 @@ async def retrieve_product_by_number(product_number):
     else:
         return {}
 
+@app.post('/api/products/new')
+async def create_product(product: Product):
+    return product_service.add_new(product)
+
+@app.put('/api/products/{id}')
+async def update_product(id, product: Product):
+    product.id = id
+    return product_service.update(product)
 
 @app.post('/api/orders/new')
 async def create_order(order: Order):
-    order.total = round(order.quantity * order.product.unit_cost, 2)
     return order_service.add_new(order)
 
 

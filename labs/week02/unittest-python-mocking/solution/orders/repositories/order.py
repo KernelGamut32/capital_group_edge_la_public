@@ -1,13 +1,10 @@
 import sqlite3
 from orders.models.order import Order
-from orders.repositories.product import ProductRepository
+from orders.models.product import Product
 
 
 class OrderRepository():
     db_name = 'orders.db'
-
-    def __init__(self, product_repository: ProductRepository):
-        self.product_repository = product_repository
 
     def insert(self, order: Order):
         with sqlite3.connect(self.db_name) as db:
@@ -22,7 +19,7 @@ class OrderRepository():
                 'SELECT ID, ORDER_NUMBER, PRODUCT_ID, QUANTITY, TOTAL FROM [ORDER] WHERE ORDER_NUMBER=?;', [order_number])
         row = cursor.fetchone()
         if row:
-            product = self.product_repository.get_by_id(row[2])
+            product = Product(id=row[2], product_number='', description='', unit_cost=0.0)
             return Order(id=row[0], order_number=row[1], product=product, quantity=row[3], total=row[4])
         else:
             return None
