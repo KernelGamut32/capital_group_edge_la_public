@@ -1,3 +1,11 @@
+# Running Unit Tests in Python
+
+To run unit tests, in a terminal navigate to the root of your project (the folder where `app.py` lives). For example, navigate to `capstone/postgres-sample/solution`. When there, execute `python -m unittest` to run your unit tests.
+
+To check your test coverage, in the terminal (from the same folder), run `coverage run -m unittest`. To view the results, you can either run `coverage report` (for a view in the terminal) or `coverage html` to generate an HTML view of your coverage percentages. See https://pypi.org/project/coverage/ for information on the coverage tool and installation (if needed).
+
+To view the coverage HTML, expand the generated `htmlcov` folder. In Visual Studio Code, find `index.html`, right-click, and choose `Reveal in Explorer`. This should open the HTML file in file view. Double-click `index.html` to launch in a browser. You can click individual lines to drill in and see coverage details by file.
+
 # Cloud Deploy
 
 ## Setting Up EC2 Instance with Connection to PostgreSQL RDS Database
