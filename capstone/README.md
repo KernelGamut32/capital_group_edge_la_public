@@ -19,6 +19,10 @@ Use https://github.com/KernelGamut32/capital_group_edge_la_public/blob/main/caps
 
 ## Deploying a FastAPI Application to AWS EC2
 
+Follow this tutorial for deploying and executing your Python code on EC2:
+
+https://towardsdatascience.com/how-to-run-your-python-scripts-in-amazon-ec2-instances-demo-8e56e76a6d24
+
 Follow this tutorial to create a Dockerized instance of your FastAPI app (use `sudo yum` instead of `sudo apt-get` if running Amazon Linux on EC2):
 
 https://dev.to/theinfosecguy/how-to-deploy-a-fastapi-application-using-docker-on-aws-4m61
