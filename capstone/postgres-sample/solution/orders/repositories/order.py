@@ -14,14 +14,15 @@ class OrderRepository():
     #         for row in rows:
     #             print(row)
 
-    host = "localhost"
-    database = "orders"
-    user = "postgres"
-    password = "password123"
+    # host = "localhost"
+    # database = "orders"
+    # user = "postgres"
+    # password = "password123"
 
     def insert(self, order: Order):
-        with psycopg2.connect(host=self.host, database=self.database, user=self.user,
-                              password=self.password) as db:
+        # with psycopg2.connect(host=self.host, database=self.database, user=self.user,
+        #                       password=self.password) as db:
+        with psycopg2.connect() as db:
             with db.cursor() as cursor:
                 cursor.execute("""
                     INSERT INTO ORDER_DETAIL
@@ -39,8 +40,9 @@ class OrderRepository():
         return order
 
     def get_by_number(self, order_number):
-        with psycopg2.connect(host=self.host, database=self.database, user=self.user,
-                              password=self.password) as db:
+        # with psycopg2.connect(host=self.host, database=self.database, user=self.user,
+        #                       password=self.password) as db:
+        with psycopg2.connect() as db:
             with db.cursor() as cursor:
                 cursor.execute("""
                     SELECT ID, ORDER_NUMBER, PRODUCT_ID, QUANTITY, TOTAL FROM ORDER_DETAIL WHERE ORDER_NUMBER=%(order_number)s
@@ -57,8 +59,9 @@ class OrderRepository():
                     return None
 
     def delete(self, id):
-        with psycopg2.connect(host=self.host, database=self.database, user=self.user,
-                              password=self.password) as db:
+        # with psycopg2.connect(host=self.host, database=self.database, user=self.user,
+        #                       password=self.password) as db:
+        with psycopg2.connect() as db:
             with db.cursor() as cursor:
                 cursor.execute("""
                     DELETE FROM ORDER_DETAIL WHERE ID=%(id)s

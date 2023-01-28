@@ -13,14 +13,15 @@ class ProductRepository():
     #         for row in rows:
     #             print(row)
 
-    host = "localhost"
-    database = "orders"
-    user = "postgres"
-    password = "password123"
+    # host = "localhost"
+    # database = "orders"
+    # user = "postgres"
+    # password = "password123"
 
     def get_by_id(self, id):
-        with psycopg2.connect(host=self.host, database=self.database, user=self.user,
-                              password=self.password) as db:
+        # with psycopg2.connect(host=self.host, database=self.database, user=self.user,
+        #                       password=self.password) as db:
+        with psycopg2.connect() as db:
             with db.cursor() as cursor:
                 cursor.execute("""
                     SELECT ID, PRODUCT_NUMBER, DESCRIPTION, UNIT_COST FROM PRODUCT WHERE ID=%(id)s
@@ -32,8 +33,9 @@ class ProductRepository():
                 return Product(id=row[0], product_number=row[1], description=row[2], unit_cost=row[3])
 
     def get_by_number(self, product_number):
-        with psycopg2.connect(host=self.host, database=self.database, user=self.user,
-                              password=self.password) as db:
+        # with psycopg2.connect(host=self.host, database=self.database, user=self.user,
+        #                       password=self.password) as db:
+        with psycopg2.connect() as db:
             with db.cursor() as cursor:
                 cursor.execute("""
                     SELECT ID, PRODUCT_NUMBER, DESCRIPTION, UNIT_COST FROM PRODUCT WHERE PRODUCT_NUMBER=%(product_number)s
@@ -49,8 +51,9 @@ class ProductRepository():
 
     def get_all(self):
         results = []
-        with psycopg2.connect(host=self.host, database=self.database, user=self.user,
-                              password=self.password) as db:
+        # with psycopg2.connect(host=self.host, database=self.database, user=self.user,
+        #                       password=self.password) as db:
+        with psycopg2.connect() as db:
             with db.cursor() as cursor:
                 cursor.execute("""
                     SELECT ID, PRODUCT_NUMBER, DESCRIPTION, UNIT_COST FROM PRODUCT
@@ -62,8 +65,9 @@ class ProductRepository():
         return results
 
     def insert(self, product: Product):
-        with psycopg2.connect(host=self.host, database=self.database, user=self.user,
-                              password=self.password) as db:
+        # with psycopg2.connect(host=self.host, database=self.database, user=self.user,
+        #                       password=self.password) as db:
+        with psycopg2.connect() as db:
             with db.cursor() as cursor:
                 cursor.execute("""
                     INSERT INTO PRODUCT (PRODUCT_NUMBER, DESCRIPTION, UNIT_COST) VALUES (%(product_number)s, %(description)s, %(unit_cost)s)
@@ -78,8 +82,9 @@ class ProductRepository():
                 return product
 
     def update(self, product: Product):
-        with psycopg2.connect(host=self.host, database=self.database, user=self.user,
-                              password=self.password) as db:
+        # with psycopg2.connect(host=self.host, database=self.database, user=self.user,
+        #                       password=self.password) as db:
+        with psycopg2.connect() as db:
             with db.cursor() as cursor:
                 cursor.execute("""
                     UPDATE PRODUCT SET PRODUCT_NUMBER=%(product_number)s, DESCRIPTION=%(description)s, UNIT_COST=%(unit_cost)s WHERE ID=%(id)s
@@ -93,8 +98,9 @@ class ProductRepository():
         return self.get_by_id(product.id)
 
     def delete(self, id):
-        with psycopg2.connect(host=self.host, database=self.database, user=self.user,
-                              password=self.password) as db:
+        # with psycopg2.connect(host=self.host, database=self.database, user=self.user,
+        #                       password=self.password) as db:
+        with psycopg2.connect() as db:
             with db.cursor() as cursor:
                 cursor.execute("""
                     DELETE FROM PRODUCT WHERE ID=%(id)s
